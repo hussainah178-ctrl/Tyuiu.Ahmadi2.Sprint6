@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using tyuiu.cources.programming.interfaces.Sprint6;
 
 namespace Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib
@@ -9,7 +8,7 @@ namespace Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib
     {
         public int[,] LoadMatrix(string path)
         {
-            string[] lines = File.ReadAllLines(path, Encoding.Default);
+            string[] lines = File.ReadAllLines(path);
             int rowCount = lines.Length;
             int colCount = lines[0].Split(';').Length;
 
@@ -18,17 +17,9 @@ namespace Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib
             for (int i = 0; i < rowCount; i++)
             {
                 string[] values = lines[i].Split(';');
-
                 for (int j = 0; j < colCount; j++)
                 {
-                    if (int.TryParse(values[j], out int number))
-                    {
-                        matrix[i, j] = number;
-                    }
-                    else
-                    {
-                        matrix[i, j] = 0; // در صورت خطا مقدار 0 قرار می‌دهیم
-                    }
+                    matrix[i, j] = Convert.ToInt32(values[j]);
                 }
             }
 
@@ -40,19 +31,27 @@ namespace Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
 
-            // کپی ماتریس برای عدم تغییر داده اصلی
-            int[,] result = (int[,])matrix.Clone();
+            int[,] resultMatrix = new int[rows, cols];
 
-            // تغییر مقادیر منفی ستون دوم (ایندکس 1) به 1
+            // کپی ماتریس
             for (int i = 0; i < rows; i++)
             {
-                if (cols > 1 && result[i, 1] < 0) // ستون دوم (ایندکس 1)
+                for (int j = 0; j < cols; j++)
                 {
-                    result[i, 1] = 1;
+                    resultMatrix[i, j] = matrix[i, j];
                 }
             }
 
-            return result;
+            // تغییر مقادیر منفی در ستون دوم (ایندکس 1) به 1
+            for (int i = 0; i < rows; i++)
+            {
+                if (resultMatrix[i, 1] < 0)
+                {
+                    resultMatrix[i, 1] = 1;
+                }
+            }
+
+            return resultMatrix;
         }
 
         public void SaveMatrixToFile(string path, int[,] matrix)
@@ -60,19 +59,20 @@ namespace Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
 
-            using (StreamWriter writer = new StreamWriter(path, false, Encoding.Default))
+            using (StreamWriter writer = new StreamWriter(path))
             {
                 for (int i = 0; i < rows; i++)
                 {
+                    string line = "";
                     for (int j = 0; j < cols; j++)
                     {
-                        writer.Write(matrix[i, j]);
+                        line += matrix[i, j];
                         if (j < cols - 1)
                         {
-                            writer.Write(";");
+                            line += ";";
                         }
                     }
-                    writer.WriteLine();
+                    writer.WriteLine(line);
                 }
             }
         }

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6827C371-D309-45F4-884C-A0BFAEE5CD1B}</ProjectGuid>
+    <ProjectGuid>{7AC71624-0E81-4A53-A779-CEDA81D9EAF5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Tyuiu.Ahmadi2.Sprint6.Task7.V1</RootNamespace>
     <AssemblyName>Tyuiu.Ahmadi2.Sprint6.Task7.V1</AssemblyName>
@@ -81,7 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib\Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib.csproj">
-      <Project>{38b43441-7dea-4cbd-9122-c7e3aa556ead}</Project>
+      <Project>{32194110-a24d-41d5-94bf-a4cafee2cef4}</Project>
       <Name>Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib</Name>
     </ProjectReference>
   </ItemGroup>
