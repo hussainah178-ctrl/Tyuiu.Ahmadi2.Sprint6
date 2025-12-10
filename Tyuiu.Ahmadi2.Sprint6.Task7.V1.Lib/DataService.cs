@@ -27,7 +27,7 @@ namespace Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib
                     }
                     else
                     {
-                        matrix[i, j] = 0; 
+                        matrix[i, j] = 0; // در صورت خطا مقدار 0 قرار می‌دهیم
                     }
                 }
             }
@@ -40,13 +40,13 @@ namespace Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
 
-            
+            // کپی ماتریس برای عدم تغییر داده اصلی
             int[,] result = (int[,])matrix.Clone();
 
-           
+            // تغییر مقادیر منفی ستون دوم (ایندکس 1) به 1
             for (int i = 0; i < rows; i++)
             {
-                if (cols > 1 && result[i, 1] < 0) 
+                if (cols > 1 && result[i, 1] < 0) // ستون دوم (ایندکس 1)
                 {
                     result[i, 1] = 1;
                 }
