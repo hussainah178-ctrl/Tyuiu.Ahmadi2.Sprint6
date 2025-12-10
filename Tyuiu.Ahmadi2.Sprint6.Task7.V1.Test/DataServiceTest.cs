@@ -1,63 +1,33 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib;
+using Tyuiu.Ahmadi2.Sprint6.Task6.V7.Lib;
 using System.IO;
-using System.Text;
 
-namespace Tyuiu.Ahmadi2.Sprint6.Task7.V1.Test
+namespace Tyuiu.Ahmadi2.Sprint6.Task6.V7.Test
 {
     [TestClass]
     public class DataServiceTest
     {
         [TestMethod]
-        public void ValidLoadAndTransform()
+        public void ValidCollectTextFromFile()
         {
             DataService ds = new DataService();
 
-           
-            string path = @"C:\Temp\InPutFileTask7V1.csv";
-            string[] csvData =
+            // ایجاد فایل تستی موقتی
+            string path = @"C:\Temp\InPutFileTask6V7.txt";
+            string[] testData =
             {
-                "5;-3;10",
-                "-2;7;15",
-                "8;-5;20",
-                "3;4;-6"
+                "Это первая строка с несколькими словами",
+                "Вторая строка тоже имеет слова",
+                "Третья строка текста для проверки",
+                "Четвертая",
+                "Пятая строка с достаточным количеством"
             };
-            File.WriteAllLines(path, csvData, Encoding.Default);
+            File.WriteAllLines(path, testData);
 
-            // 
-            int[,] matrix = ds.LoadMatrix(path);
+            string res = ds.CollectTextFromFile(path);
+            string wait = "строка строка с"; // سومین کلمات: "строка" (خط ۱)، "строка" (خط ۲)، "с" (خط ۳)، خط ۴ نادیده، "с" (خط ۵)
 
-            
-            int[,] transformed = ds.TransformMatrix(matrix);
-
-            
-            int[,] expected =
-            {
-                {5, 1, 10},    
-                {-2, 7, 15},   
-                {8, 1, 20},   
-                {3, 4, -6}     
-            };
-
-            
-            CollectionAssert.AreEqual(expected, transformed);
-        }
-
-        [TestMethod]
-        public void ValidSaveToFile()
-        {
-            DataService ds = new DataService();
-            string savePath = @"C:\Temp\OutPutFileTask7.csv";
-
-            int[,] testMatrix =
-            {
-                {1, 2, 3},
-                {4, 5, 6}
-            };
-
-            ds.SaveMatrixToFile(savePath, testMatrix);
-
-            Assert.IsTrue(File.Exists(savePath));
+            Assert.AreEqual(wait, res);
         }
     }
 }
