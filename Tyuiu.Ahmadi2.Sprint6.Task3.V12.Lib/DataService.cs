@@ -1,6 +1,8 @@
-﻿namespace Tyuiu.Ahmadi2.Sprint6.Task3.V12.Lib
+﻿using tyuiu.cources.programming.interfaces.Sprint6;
+
+namespace Tyuiu.Ahmadi2.Sprint6.Task3.V12.Lib
 {
-    public class DataService
+    public class DataService :ISprint6Task3V12
     {
         public int[,] Calculate(int[,] matrix)
         {
