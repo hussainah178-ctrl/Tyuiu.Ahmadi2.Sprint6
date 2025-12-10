@@ -5,7 +5,7 @@ using tyuiu.cources.programming.interfaces.Sprint6;
 
 namespace Tyuiu.Ahmadi2.Sprint6.Task7.V1.Lib
 {
-    public class DataService :ISprint6Task7V1
+    public class DataService : ISprint6Task7V1
     {
         public int[,] LoadMatrix(string path)
         {
