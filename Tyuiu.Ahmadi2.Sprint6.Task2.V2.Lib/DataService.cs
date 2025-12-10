@@ -1,22 +1,34 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tyuiu.Ahmadi2.Sprint6.Task2.V2.Lib;
+﻿using System;
+using tyuiu.cources.programming.interfaces.Sprint6;
 
-namespace Tyuiu.Ahmadi2.Sprint6.Task2.V2.Test
+namespace Tyuiu.Ahmadi2.Sprint6.Task2.V2.Lib
 {
-    [TestClass]
-    public class DataServiceTest
+    public class DataService :ISprint6Task2V2
     {
-        [TestMethod]
-        public void ValidGetMassFunction()
+        public double[] GetMassFunction(int startValue, int stopValue)
         {
-            DataService ds = new DataService();
-            int startValue = -5;
-            int stopValue = 5;
-            double[] res = ds.GetMassFunction(startValue, stopValue);
-            double[] wait = {
-                20.15, 16.19, 10.81, 7.84, 4.81, 0, -1.97, -7.24, -12.01, -16.95, -21.51
-            };
-            CollectionAssert.AreEqual(wait, res);
+            int len = (stopValue - startValue) + 1;
+            double[] valueArray = new double[len];
+
+            int count = 0;
+            for (int x = startValue; x <= stopValue; x++)
+            {
+                
+                if (3 * x + 0.5 == 0)
+                {
+                    valueArray[count] = 0;
+                }
+                else
+                {
+                    double term1 = Math.Sin(x);
+                    double term2 = 2.0 / (3 * x + 0.5);
+                    double term3 = 2 * Math.Cos(x) * 2 * x;
+                    double result = term1 + term2 - term3;
+                    valueArray[count] = Math.Round(result, 2);
+                }
+                count++;
+            }
+            return valueArray;
         }
     }
 }
