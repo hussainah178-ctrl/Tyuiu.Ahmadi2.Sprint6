@@ -25,7 +25,7 @@ namespace Tyuiu.Ahmadi2.Sprint6.Task1.V15.Lib
                     double term1 = numerator / denominator;
                     double term2 = Math.Sin(x) * 12 * x;
                     double result = term1 - term2 + 2;
-                    valueArray[count] = Math.Round(result, 2);
+                    valueArray[count] = Math.Round(result, 2);   
                 }
                 count++;
             }
